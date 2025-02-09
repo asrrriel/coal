@@ -17,7 +17,7 @@ FLEX_GEN = $(patsubst $(SRC_DIR)/%.l, $(GEN_DIR)/%.yy.c, $(FLEX_SRC))
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -I$(SRC_DIR)
 YACC = bison
 LEX = flex
 YFLAGS = -d

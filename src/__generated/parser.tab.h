@@ -44,6 +44,12 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
+/* "%code requires" blocks.  */
+#line 15 "src/parser.y"
+
+   #include "ast.h"
+
+#line 53 "src/__generated/parser.tab.h"
 
 /* Token kinds.  */
 #ifndef YYTOKENTYPE
@@ -56,34 +62,96 @@ extern int yydebug;
     YYUNDEF = 257,                 /* "invalid token"  */
     LPAREN = 258,                  /* LPAREN  */
     RPAREN = 259,                  /* RPAREN  */
-    NUMBER = 260,                  /* NUMBER  */
-    LOR = 261,                     /* LOR  */
-    LAND = 262,                    /* LAND  */
-    OR = 263,                      /* OR  */
-    XOR = 264,                     /* XOR  */
-    AND = 265,                     /* AND  */
-    EQ = 266,                      /* EQ  */
-    NE = 267,                      /* NE  */
-    LT = 268,                      /* LT  */
-    LE = 269,                      /* LE  */
-    GT = 270,                      /* GT  */
-    GE = 271,                      /* GE  */
-    SHL = 272,                     /* SHL  */
-    SHR = 273,                     /* SHR  */
-    PLUS = 274,                    /* PLUS  */
-    MINUS = 275,                   /* MINUS  */
-    MUL = 276,                     /* MUL  */
-    DIV = 277,                     /* DIV  */
-    REM = 278,                     /* REM  */
-    NOT = 279,                     /* NOT  */
-    LNOT = 280                     /* LNOT  */
+    LCURLY = 260,                  /* LCURLY  */
+    RCURLY = 261,                  /* RCURLY  */
+    LSQUARE = 262,                 /* LSQUARE  */
+    RSQUARE = 263,                 /* RSQUARE  */
+    NUMBER = 264,                  /* NUMBER  */
+    ACCESS = 265,                  /* ACCESS  */
+    POINTER_ACCESS = 266,          /* POINTER_ACCESS  */
+    INC = 267,                     /* INC  */
+    DEC = 268,                     /* DEC  */
+    PLUS = 269,                    /* PLUS  */
+    MINUS = 270,                   /* MINUS  */
+    NOT = 271,                     /* NOT  */
+    LNOT = 272,                    /* LNOT  */
+    MUL = 273,                     /* MUL  */
+    ADDROF = 274,                  /* ADDROF  */
+    DIV = 275,                     /* DIV  */
+    REM = 276,                     /* REM  */
+    SHL = 277,                     /* SHL  */
+    SHR = 278,                     /* SHR  */
+    LT = 279,                      /* LT  */
+    LE = 280,                      /* LE  */
+    GT = 281,                      /* GT  */
+    GE = 282,                      /* GE  */
+    EQ = 283,                      /* EQ  */
+    NE = 284,                      /* NE  */
+    AND = 285,                     /* AND  */
+    XOR = 286,                     /* XOR  */
+    OR = 287,                      /* OR  */
+    LAND = 288,                    /* LAND  */
+    LOR = 289,                     /* LOR  */
+    TERNQ = 290,                   /* TERNQ  */
+    COLON = 291,                   /* COLON  */
+    ASS = 292,                     /* ASS  */
+    CHADD = 293,                   /* CHADD  */
+    CHSUB = 294,                   /* CHSUB  */
+    CHMUL = 295,                   /* CHMUL  */
+    CHDIV = 296,                   /* CHDIV  */
+    CHREM = 297,                   /* CHREM  */
+    CHSHL = 298,                   /* CHSHL  */
+    CHSHR = 299,                   /* CHSHR  */
+    CHAND = 300,                   /* CHAND  */
+    CHXOR = 301,                   /* CHXOR  */
+    CHOR = 302,                    /* CHOR  */
+    COMMA = 303,                   /* COMMA  */
+    AUTO = 304,                    /* AUTO  */
+    DOUBLE = 305,                  /* DOUBLE  */
+    INT = 306,                     /* INT  */
+    STRUCT = 307,                  /* STRUCT  */
+    BREAK = 308,                   /* BREAK  */
+    ELSE = 309,                    /* ELSE  */
+    LONG = 310,                    /* LONG  */
+    SWITCH = 311,                  /* SWITCH  */
+    CASE = 312,                    /* CASE  */
+    ENUM = 313,                    /* ENUM  */
+    REGISTER = 314,                /* REGISTER  */
+    TYPEDEF = 315,                 /* TYPEDEF  */
+    CHAR = 316,                    /* CHAR  */
+    EXTERN = 317,                  /* EXTERN  */
+    RETURN = 318,                  /* RETURN  */
+    UNION = 319,                   /* UNION  */
+    CONST = 320,                   /* CONST  */
+    FLOAT = 321,                   /* FLOAT  */
+    SHORT = 322,                   /* SHORT  */
+    UNSIGNED = 323,                /* UNSIGNED  */
+    CONTINUE = 324,                /* CONTINUE  */
+    FOR = 325,                     /* FOR  */
+    SIGNED = 326,                  /* SIGNED  */
+    VOID = 327,                    /* VOID  */
+    DEFAULT = 328,                 /* DEFAULT  */
+    GOTO = 329,                    /* GOTO  */
+    SIZEOF = 330,                  /* SIZEOF  */
+    VOLATILE = 331,                /* VOLATILE  */
+    DO = 332,                      /* DO  */
+    IF = 333,                      /* IF  */
+    STATIC = 334,                  /* STATIC  */
+    WHILE = 335,                   /* WHILE  */
+    _BOOL = 336,                   /* _BOOL  */
+    _IMAGINARY = 337,              /* _IMAGINARY  */
+    RESTRICT = 338,                /* RESTRICT  */
+    _COMPLEX = 339,                /* _COMPLEX  */
+    INLINE = 340,                  /* INLINE  */
+    IDENTIFIER = 341,              /* IDENTIFIER  */
+    SEMICOLON = 342                /* SEMICOLON  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef  ast_node_t *  YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
