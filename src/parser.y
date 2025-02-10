@@ -17,65 +17,65 @@ extern void yy_delete_buffer(int);
 }
 
 %define api.value.type { ast_node_t * }
-%left LPAREN RPAREN LCURLY RCURLY LSQUARE RSQUARE NUMBER ACCESS POINTER_ACCESS INC DEC
-%right PLUS MINUS NOT LNOT MUL ADDROF
-%left DIV REM
-%left SHL SHR
-%left LT LE
-%left GT GE 
-%left EQ NE 
-%left AND
-%left XOR
-%left OR
-%left LAND
-%left LOR
-%right TERNQ COLON 
-%right ASS CHADD CHSUB CHMUL CHDIV CHREM CHSHL CHSHR CHAND CHXOR CHOR 
 %left COMMA
+%right TERNQ COLON 
+%left LOR
+%left LAND
+%left OR
+%left XOR
+%left AND
+%left EQ NE 
+%left GT GE 
+%left LT LE
+%left SHL SHR
+%left DIV REM
+%left LPAREN RPAREN LCURLY RCURLY LSQUARE RSQUARE NUMBER ACCESS POINTER_ACCESS INC DEC
+%right AUTO DOUBLE INT STRUCT BREAK ELSE LONG SWITCH CASE ENUM REGISTER TYPEDEF CHAR EXTERN RETURN UNION CONST FLOAT SHORT UNSIGNED CONTINUE FOR SIGNED VOID DEFAULT GOTO SIZEOF VOLATILE DO IF STATIC WHILE _BOOL _IMAGINARY RESTRICT _COMPLEX INLINE 
+%left IDENTIFIER SEMICOLON
+%right PLUS MINUS NOT LNOT MUL ADDROF
+%right ASS CHADD CHSUB CHMUL CHDIV CHREM CHSHL CHSHR CHAND CHXOR CHOR 
 
 //keywords
-%token AUTO DOUBLE INT STRUCT BREAK ELSE LONG SWITCH CASE ENUM REGISTER TYPEDEF CHAR EXTERN RETURN UNION CONST FLOAT SHORT UNSIGNED CONTINUE FOR SIGNED VOID DEFAULT GOTO SIZEOF VOLATILE DO IF STATIC WHILE _BOOL _IMAGINARY RESTRICT _COMPLEX INLINE 
 
-%token IDENTIFIER SEMICOLON
 
 %%
 statement: 
-         expr SEMICOLON { root = $1; }
-    |    IDENTIFIER   ASS     expr       SEMICOLON { root = ast_new_binary_node(ASTTYPE_ASSIGNMENT, $1, $3); }
-    |    type_decl IDENTIFIER definition SEMICOLON  { root = ast_new_declaration($2, $1, $3); }
-    |    SEMICOLON /* no expression */
+         expr { root = $1; }
+    |    IDENTIFIER   ASS     expr       { root = ast_new_binary_node(ASTTYPE_ASSIGNMENT, $1, $3); }
+    |    type_decl IDENTIFIER definition { root = ast_new_declaration($2, $1, $3); }
     ;
 
 expr:
-    |           LPAREN  expr RPAREN       { $$ = $2; }
-    |           NOT     expr              { $$ = ast_new_unary_node(ASTTYPE_BINARY_NOT, $2); }
-    |           LNOT    expr              { $$ = ast_new_unary_node(ASTTYPE_LOGICAL_NOT, $2); }
-    |           INC     expr              { $$ = ast_new_unary_node(ASTTYPE_INCREMENT, $2); }
-    |           DEC     expr              { $$ = ast_new_unary_node(ASTTYPE_DECREMENT, $2); }
-    |           ADDROF  expr              { $$ = ast_new_unary_node(ASTTYPE_ADDRESS_OF, $2); }
-    |           MUL     expr              { $$ = ast_new_unary_node(ASTTYPE_DEREFERENCE, $2); }
-    |    expr   INC                       { $$ = ast_new_unary_node(ASTTYPE_INCREMENT, $1); }
-    |    expr   DEC                       { $$ = ast_new_unary_node(ASTTYPE_DECREMENT, $1); }
-    |    expr   PLUS    expr              { $$ = ast_new_binary_node(ASTTYPE_ADDITION, $1, $3); } 
-    |    expr   MINUS   expr              { $$ = ast_new_binary_node(ASTTYPE_SUBTRACTION, $1, $3); }
-    |    expr   MUL     expr              { $$ = ast_new_binary_node(ASTTYPE_MULTIPLICATION, $1, $3); }
-    |    expr   DIV     expr              { $$ = ast_new_binary_node(ASTTYPE_DIVISION, $1, $3); }
-    |    expr   REM     expr              { $$ = ast_new_binary_node(ASTTYPE_MODULO, $1, $3); }
-    |    expr   AND     expr              { $$ = ast_new_binary_node(ASTTYPE_LOGICAL_AND, $1, $3); }
-    |    expr   OR      expr              { $$ = ast_new_binary_node(ASTTYPE_LOGICAL_OR, $1, $3); }
-    |    expr   XOR     expr              { $$ = ast_new_binary_node(ASTTYPE_BINARY_XOR, $1, $3); }
-    |    expr   SHL     expr              { $$ = ast_new_binary_node(ASTTYPE_LEFT_SHIFT, $1, $3); }
-    |    expr   SHR     expr              { $$ = ast_new_binary_node(ASTTYPE_RIGHT_SHIFT, $1, $3); }
-    |    expr   LAND    expr              { $$ = ast_new_binary_node(ASTTYPE_LOGICAL_AND, $1, $3); }
-    |    expr   LOR     expr              { $$ = ast_new_binary_node(ASTTYPE_LOGICAL_OR, $1, $3); }
-    |    expr   EQ      expr              { $$ = ast_new_binary_node(ASTTYPE_EQUAL, $1, $3); }
-    |    expr   NE      expr              { $$ = ast_new_binary_node(ASTTYPE_NOT_EQUAL, $1, $3); }
-    |    expr   LT      expr              { $$ = ast_new_binary_node(ASTTYPE_LESS_THAN, $1, $3); }
-    |    expr   LE      expr              { $$ = ast_new_binary_node(ASTTYPE_LESS_THAN_EQUAL, $1, $3); }
-    |    expr   GT      expr              { $$ = ast_new_binary_node(ASTTYPE_GREATER_THAN, $1, $3); }
-    |    expr   GE      expr              { $$ = ast_new_binary_node(ASTTYPE_GREATER_THAN_EQUAL, $1, $3); }
-    |    expr   TERNQ   expr COLON expr   { $$ = ast_new_trinary_node($1, $3, $5); }
-    |    NUMBER                           { $$ = $1; }
+    |           LPAREN  expr RPAREN       { printf("()\n");$$ = $2; }
+    |           NOT     expr              { printf("~\n");$$ = ast_new_unary_node(ASTTYPE_BINARY_NOT, $2); }
+    |           LNOT    expr              { printf("!\n");$$ = ast_new_unary_node(ASTTYPE_LOGICAL_NOT, $2); }
+    |           INC     expr              { printf("++\n");$$ = ast_new_unary_node(ASTTYPE_INCREMENT, $2); }
+    |           DEC     expr              { printf("--\n");$$ = ast_new_unary_node(ASTTYPE_DECREMENT, $2); }
+    |           ADDROF  expr              { printf("&a\n");$$ = ast_new_unary_node(ASTTYPE_ADDRESS_OF, $2); }
+    |           MUL     expr              { printf("*a\n");$$ = ast_new_unary_node(ASTTYPE_DEREFERENCE, $2); }
+    |    expr   INC                       { printf("++\n");$$ = ast_new_unary_node(ASTTYPE_INCREMENT, $1); }
+    |    expr   DEC                       { printf("--\n");$$ = ast_new_unary_node(ASTTYPE_DECREMENT, $1); }
+    |    expr   PLUS    expr              { printf("+\n");$$ = ast_new_binary_node(ASTTYPE_ADDITION, $1, $3); } 
+    |    expr   MINUS   expr              { printf("-\n");$$ = ast_new_binary_node(ASTTYPE_SUBTRACTION, $1, $3); }
+    |    expr   MUL     expr              { printf("*\n");$$ = ast_new_binary_node(ASTTYPE_MULTIPLICATION, $1, $3); }
+    |    expr   DIV     expr              { printf("/\n");$$ = ast_new_binary_node(ASTTYPE_DIVISION, $1, $3); }
+    |    expr   REM     expr              { printf("%\n");$$ = ast_new_binary_node(ASTTYPE_MODULO, $1, $3); }
+    |    expr   AND     expr              { printf("&\n");$$ = ast_new_binary_node(ASTTYPE_LOGICAL_AND, $1, $3); }
+    |    expr   OR      expr              { printf("|\n");$$ = ast_new_binary_node(ASTTYPE_LOGICAL_OR, $1, $3); }
+    |    expr   XOR     expr              { printf("^\n");$$ = ast_new_binary_node(ASTTYPE_BINARY_XOR, $1, $3); }
+    |    expr   SHL     expr              { printf("<<\n");$$ = ast_new_binary_node(ASTTYPE_LEFT_SHIFT, $1, $3); }
+    |    expr   SHR     expr              { printf(">>\n");$$ = ast_new_binary_node(ASTTYPE_RIGHT_SHIFT, $1, $3); }
+    |    expr   LAND    expr              { printf("&&\n");$$ = ast_new_binary_node(ASTTYPE_LOGICAL_AND, $1, $3); }
+    |    expr   LOR     expr              { printf("||\n");$$ = ast_new_binary_node(ASTTYPE_LOGICAL_OR, $1, $3); }
+    |    expr   EQ      expr              { printf("==\n");$$ = ast_new_binary_node(ASTTYPE_EQUAL, $1, $3); }
+    |    expr   NE      expr              { printf("!=\n");$$ = ast_new_binary_node(ASTTYPE_NOT_EQUAL, $1, $3); }
+    |    expr   LT      expr              { printf("<\n");$$ = ast_new_binary_node(ASTTYPE_LESS_THAN, $1, $3); }
+    |    expr   LE      expr              { printf("<=\n");$$ = ast_new_binary_node(ASTTYPE_LESS_THAN_EQUAL, $1, $3); }
+    |    expr   GT      expr              { printf(">\n");$$ = ast_new_binary_node(ASTTYPE_GREATER_THAN, $1, $3); }
+    |    expr   GE      expr              { printf(">=\n");$$ = ast_new_binary_node(ASTTYPE_GREATER_THAN_EQUAL, $1, $3); }
+    |    expr   TERNQ   expr COLON expr   { printf("?:\n");$$ = ast_new_trinary_node($1, $3, $5); }
+    |    NUMBER                           { printf("num\n");$$ = $1; }
+    |    IDENTIFIER                       /* omg I forgot about variable usage */
     ;
 definition:
     /* empty */               { $$ = NULL; }

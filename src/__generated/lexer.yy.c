@@ -382,18 +382,18 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[236] =
     {   0,
-        0,    0,   92,   90,    1,    1,    7,   12,   13,   26,
-       27,   10,    8,   50,    9,   32,   11,    2,    2,   39,
-       51,   22,   37,   24,   38,   90,   30,   31,   15,   90,
+        0,    0,   92,   90,    1,    1,    8,   13,   14,   27,
+       28,   11,    9,   51,   10,   33,   12,    2,    2,   40,
+        6,   23,   38,   25,   39,   90,   31,   32,   16,   90,
        90,   90,   90,   90,   90,   90,   90,   90,   90,   90,
-       90,   90,   90,   90,   90,   28,   14,   29,    6,   21,
-       44,   18,   47,   42,   34,   40,   35,   41,   33,   43,
-        2,   89,   89,   89,   89,   16,   23,   20,   25,   17,
-       48,   89,   89,   89,   89,   89,   89,   89,   89,   89,
+       90,   90,   90,   90,   90,   29,   15,   30,    7,   22,
+       45,   19,   48,   43,   35,   41,   36,   42,   34,   44,
+        2,   89,   89,   89,   89,   17,   24,   21,   26,   18,
+       49,   89,   89,   89,   89,   89,   89,   89,   89,   89,
        80,   89,   89,   89,   89,   89,   89,   81,   89,   89,
-       89,   89,   89,   89,   89,   89,   89,   89,   89,   49,
+       89,   89,   89,   89,   89,   89,   89,   89,   89,   50,
 
-       19,    5,    4,    3,   45,   46,   89,   89,   89,   89,
+       20,    5,    4,    3,   46,   47,   89,   89,   89,   89,
        89,   89,   89,   89,   89,   89,   89,   89,   89,   89,
        73,   89,   89,   54,   89,   89,   89,   89,   89,   89,
        89,   89,   89,   89,   89,   89,   89,   89,   89,   89,
@@ -948,232 +948,232 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 17 "src/lexer.l"
-{ return NOT; }
+{ return SEMICOLON;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 18 "src/lexer.l"
-{ return LNOT; }
+{ return NOT; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 19 "src/lexer.l"
-{ return PLUS; }
+{ return LNOT; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 20 "src/lexer.l"
-{ return MINUS; }
+{ return PLUS; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 21 "src/lexer.l"
-{ return MUL; }
+{ return MINUS; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 22 "src/lexer.l"
-{ return DIV; }
+{ return MUL; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 23 "src/lexer.l"
-{ return REM; }
+{ return DIV; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 24 "src/lexer.l"
-{ return AND; }
+{ return REM; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 25 "src/lexer.l"
-{ return OR; }
+{ return AND; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 26 "src/lexer.l"
-{ return XOR; }
+{ return OR; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 27 "src/lexer.l"
-{ return SHL; }
+{ return XOR; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 28 "src/lexer.l"
-{ return SHR; }
+{ return SHL; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 29 "src/lexer.l"
-{ return LAND; }
+{ return SHR; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 30 "src/lexer.l"
-{ return LOR; }
+{ return LAND; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 31 "src/lexer.l"
-{ return EQ; }
+{ return LOR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 32 "src/lexer.l"
-{ return NE; }
+{ return EQ; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 33 "src/lexer.l"
-{ return LT; }
+{ return NE; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 34 "src/lexer.l"
-{ return LE; }
+{ return LT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 35 "src/lexer.l"
-{ return GT; }
+{ return LE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 36 "src/lexer.l"
-{ return GE; }
+{ return GT; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 37 "src/lexer.l"
-{ return LPAREN; }
+{ return GE; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 38 "src/lexer.l"
-{ return RPAREN; }
+{ return LPAREN; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 39 "src/lexer.l"
-{ return LCURLY; }
+{ return RPAREN; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 40 "src/lexer.l"
-{ return RCURLY; }
+{ return LCURLY; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 41 "src/lexer.l"
-{ return LSQUARE; }
+{ return RCURLY; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 42 "src/lexer.l"
-{ return RSQUARE; }
+{ return LSQUARE; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 43 "src/lexer.l"
-{ return ACCESS; }
+{ return RSQUARE; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 44 "src/lexer.l"
-{ return POINTER_ACCESS;}
+{ return ACCESS; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 45 "src/lexer.l"
-{ return INC; }
+{ return POINTER_ACCESS;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 46 "src/lexer.l"
-{ return DEC; }
+{ return INC; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 47 "src/lexer.l"
-{ return ADDROF; }
+{ return DEC; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 48 "src/lexer.l"
-{ return ASS; }
+{ return ADDROF; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 49 "src/lexer.l"
-{ return TERNQ; }
+{ return ASS; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 50 "src/lexer.l"
-{ return COLON; }
+{ return TERNQ; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 51 "src/lexer.l"
-{ return CHADD; }
+{ return COLON; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 52 "src/lexer.l"
-{ return CHSUB; }
+{ return CHADD; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 53 "src/lexer.l"
-{ return CHMUL; }
+{ return CHSUB; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 54 "src/lexer.l"
-{ return CHDIV; }
+{ return CHMUL; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 #line 55 "src/lexer.l"
-{ return CHREM; }
+{ return CHDIV; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 #line 56 "src/lexer.l"
-{ return CHSHL; }
+{ return CHREM; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 57 "src/lexer.l"
-{ return CHSHR; }
+{ return CHSHL; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 58 "src/lexer.l"
-{ return CHAND; }
+{ return CHSHR; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 59 "src/lexer.l"
-{ return CHXOR; }
+{ return CHAND; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
 #line 60 "src/lexer.l"
-{ return CHOR;  }
+{ return CHXOR; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
 #line 61 "src/lexer.l"
-{ return COMMA;}
+{ return CHOR;  }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
 #line 62 "src/lexer.l"
-{ printf("SEMICOLON\n"); return SEMICOLON;}
+{ return COMMA;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP

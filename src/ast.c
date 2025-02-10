@@ -115,128 +115,199 @@ void ast_print(ast_node_t *node, int depth) {
 
     // Print indentation based on depth
     for (int i = 0; i < depth; i++) {
-        printf("  ");
+        printf("    ");
     }
 
     // Print the node type
     switch (node->type) {
         case ASTTYPE_INTEGER_LITERAL:
-            printf("Integer Literal: %d\n", node->integer_literal);
+            printf("- Integer Literal: %d\n", node->integer_literal);
             break;
         case ASTTYPE_FLOAT_LITERAL:
-            printf("Float Literal: %f\n", node->float_literal);
+            printf("- Float Literal: %f\n", node->float_literal);
             break;
         case ASTTYPE_STRING_LITERAL:
-            printf("String Literal: \"%s\"\n", node->string_literal.text);
+            printf("- String Literal: \"%s\"\n", node->string_literal.text);
             break;
         case ASTTYPE_IDENTIFIER:
-            printf("Identifier: \"%s\"\n", node->identifier.text);
+            printf("- Identifier: \"%s\"\n", node->identifier.text);
             break;
         case ASTTYPE_ASSIGNMENT:
-            printf("Assignment\n");
+            printf("- Assignment\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_ADDITION:
-            printf("Addition\n");
+            printf("- Addition\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_SUBTRACTION:
-            printf("Subtraction\n");
+            printf("- Subtraction\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_MULTIPLICATION:
-            printf("Multiplication\n");
+            printf("- Multiplication\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_DIVISION:
-            printf("Division\n");
+            printf("- Division\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_MODULO:
-            printf("Modulo\n");
+            printf("- Modulo\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_BINARY_AND:
-            printf("Binary AND\n");
+            printf("- Binary AND\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_BINARY_OR:
-            printf("Binary OR\n");
+            printf("- Binary OR\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_BINARY_XOR:
-            printf("Binary XOR\n");
+            printf("- Binary XOR\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_BINARY_NOT:
-            printf("Binary NOT\n");
+            printf("- Binary NOT\n");
             ast_print(node->unary_exp.right, depth + 1);
             break;
         case ASTTYPE_LOGICAL_AND:
-            printf("Logical AND\n");
+            printf("- Logical AND\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_LOGICAL_OR:
-            printf("Logical OR\n");
+            printf("- Logical OR\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_LOGICAL_NOT:
-            printf("Logical NOT\n");
+            printf("- Logical NOT\n");
             ast_print(node->unary_exp.right, depth + 1);
             break;
         case ASTTYPE_EQUAL:
-            printf("Equal\n");
+            printf("- Equal\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_NOT_EQUAL:
-            printf("Not Equal\n");
+            printf("- Not Equal\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_GREATER_THAN:
-            printf("Greater Than\n");
+            printf("- Greater Than\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_GREATER_THAN_EQUAL:
-            printf("Greater Than Equal\n");
+            printf("- Greater Than Equal\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_LESS_THAN:
-            printf("Less Than\n");
+            printf("- Less Than\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_LESS_THAN_EQUAL:
-            printf("Less Than Equal\n");
+            printf("- Less Than Equal\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_LEFT_SHIFT:
-            printf("Left Shift\n");
+            printf("- Left Shift\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
         case ASTTYPE_RIGHT_SHIFT:
-            printf("Right Shift\n");
+            printf("- Right Shift\n");
             ast_print(node->binary_exp.left, depth + 1);
             ast_print(node->binary_exp.right, depth + 1);
             break;
+        case ASTTYPE_DEFINITION:
+            printf("- Definition\n");
+            ast_print(node->definition.name, depth + 1);
+            ast_print(node->definition.type, depth + 1);
+            ast_print(node->definition.val_exp, depth + 1);
+            break;
+        case ASTTYPE_TYPE:
+            printf("- Type\n");
+            printf("    - Basetype:%s\n",node->vartype.basetype);
+            for(size_t i = 0; i < node->vartype.num_qualifiers;i++ ){
+                ast_print(&node->vartype.qualifiers[i], depth + 1);
+            }
+            //modifiers not implemented yet
+            break;
+        case ASTTYPE_QUALIFIER:
+            printf("- Qualifier\n");
+            for (int i = 0; i < depth; i++) {
+                printf("    ");
+            }
+            switch(node->qualifier.which){
+                case QUALIFIER_AUTO:
+                    printf("    -Value: auto\n");
+                    break;
+                case QUALIFIER_EXTERN:
+                    printf("    -Value: extern\n");
+                    break;
+                case QUALIFIER_REGISTER:
+                    printf("    -Value: register\n");
+                    break;
+                case QUALIFIER_STATIC:
+                    printf("    -Value: static\n");
+                    break;
+                case QUALIFIER_CONST:
+                    printf("    -Value: const\n");
+                    break;
+                case QUALIFIER_LONG:
+                    printf("    -Value: long\n");
+                    break;
+                case QUALIFIER_SHORT:
+                    printf("    -Value: short\n");
+                    break;
+                case QUALIFIER_SIGNED:
+                    printf("    -Value: signed\n");
+                    break;
+                case QUALIFIER_UNSIGNED:
+                    printf("    -Value: unsigned\n");
+                    break;
+            }
+            break;
+        case ASTTYPE_TRINARY:
+            printf("- Ternary\n");
+            ast_print(node->trinary_exp.condition, depth + 1);
+            ast_print(node->trinary_exp.false_exp, depth + 1);
+            ast_print(node->trinary_exp.true_exp, depth + 1);
+            break;
+        case ASTTYPE_INCREMENT:
+            printf("- Increment\n");
+            ast_print(node->unary_exp.right, depth + 1);
+            break;
+        case ASTTYPE_DECREMENT:
+            printf("- Decrement\n");
+            ast_print(node->unary_exp.right, depth + 1);
+            break;
+        case ASTTYPE_ADDRESS_OF:
+            printf("- Address of\n");
+            ast_print(node->unary_exp.right, depth + 1);
+            break;
+        case ASTTYPE_DEREFERENCE:
+            printf("- Dereference\n");
+            ast_print(node->unary_exp.right, depth + 1);
+            break;
         default:
-            printf("Unknown Node Type\n");
+            printf("Unknown Node Type: %d\n", node->type);
             break;
     }
 }

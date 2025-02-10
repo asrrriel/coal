@@ -14,6 +14,7 @@ extern ast_node_t* yylval;
 0x[0-9a-fA-F]+  { yylval = ast_new_integer_literal(strtol(yytext,NULL,16)); return NUMBER; } // hex literal
 0o[0-7]+        { yylval = ast_new_integer_literal(strtol(yytext,NULL,8)); return NUMBER; } // octal literal
 0b[01]+         { yylval = ast_new_integer_literal(strtol(yytext,NULL,2)); return NUMBER; } // binary literal
+";"             { return SEMICOLON;}
 "~"             { return NOT; }
 "!"             { return LNOT; }
 "+"             { return PLUS; }
@@ -59,7 +60,6 @@ extern ast_node_t* yylval;
 "^="            { return CHXOR; }
 "|="            { return CHOR;  }
 ","             { return COMMA;}
-";"             { printf("SEMICOLON\n"); return SEMICOLON;}
 auto            { return AUTO;}
 double          { return DOUBLE;}
 int             { return INT;}
